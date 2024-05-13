@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    
+    // Random choice and convert it too one of the 3 options    
     let randomChoice = Math.floor(Math.random()*3);
     
     switch (randomChoice) {
@@ -14,11 +14,13 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    
+    // Prompt the player for an option, validates whether it's a valid option and makes it lower case
+    // If it's not a valid choice, the player loses by default
     let humanChoice = window.prompt("Choose Rock, Paper or Scissors", "Default").toLowerCase() ;
     const validChoices = ["rock", "paper","scissors"];
-    if (validChoices.includes(humanChoice) )
-    {return humanChoice.toLocaleLowerCase();}
+    
+    if (validChoices.includes(humanChoice) ) {return humanChoice.toLocaleLowerCase();}
+    
     return "default";
 
 }
@@ -27,8 +29,8 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-
 function getRoundResult(humanInput, computerInput) {
+    // Given the valid Choices, return the round winner
     
     if (humanInput === "default") {
         return "Computer";
@@ -59,7 +61,8 @@ function updateScores(roundWinner) {
     }
 }
 
-function resultMessage(roundWinner) {
+function getResultMessage(roundWinner) {
+    // Gives the result as a message in plain english
     switch (roundWinner) {
         case "Human": 
             return "You Won!!";
@@ -78,7 +81,7 @@ function playRound() {
     let humanInput = getHumanChoice("Choose rock, paper or scissors.\nNote: Any other choice is your loss.");
     let result = getRoundResult(humanInput, computerInput);
     updateScores(result);
-    console.log(resultMessage(result)+` Computer chose ${computerInput} and you chose ${humanInput}.
+    console.log(getResultMessage(result)+` Computer chose ${computerInput} and you chose ${humanInput}.
     Current score: Player ${humanScore}, Computer ${computerScore}`);
 }
 
