@@ -1,0 +1,47 @@
+/* html , body {
+    height: 100%;
+} */
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    outline: auto;
+    min-height: 100vh;
+    gap: 12vh;
+}
+
+.choices {
+    display: flex;
+    gap: 5vh;
+}
+
+button {
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 10vh;
+    min-height: 10vh;
+}
+
+.text {
+    flex-shrink: 1;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scores {
+    display: flex;
+    gap:15vh;
+    justify-content: center;
+    align-items: center;
+    outline: auto;
+}

@@ -13,21 +13,23 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    // Prompt the player for an option, validates whether it's a valid option and makes it lower case
-    // If it's not a valid choice, the player loses by default
-    let humanChoice = window.prompt("Choose Rock, Paper or Scissors", "Default").toLowerCase() ;
-    const validChoices = ["rock", "paper","scissors"];
+// function getHumanChoice() {
+//     // Prompt the player for an option, validates whether it's a valid option and makes it lower case
+//     // If it's not a valid choice, the player loses by default
+//     let humanChoice = window.prompt("Choose Rock, Paper or Scissors", "Default").toLowerCase() ;
+//     const validChoices = ["rock", "paper","scissors"];
     
-    if (validChoices.includes(humanChoice) ) {return humanChoice.toLocaleLowerCase();}
+//     if (validChoices.includes(humanChoice) ) {return humanChoice.toLocaleLowerCase();}
     
-    return "default";
+//     return "default";
 
-}
+// }
 
 let humanScore = 0;
 let computerScore = 0;
-
+let humanScoreKeep = document.querySelector(".scores .human .score")
+let computerScoreKeep = document.querySelector(".scores .computer .score")
+let messageDiv = document.querySelector("#winner")
 
 function getRoundResult(humanInput, computerInput) {
     // Given the valid Choices, return the round winner
@@ -52,9 +54,11 @@ function updateScores(roundWinner) {
     switch (roundWinner) {
         case "Human": 
             humanScore +=1;
+            humanScoreKeep.textContent = String(humanScore);
             break;
         case "Computer":
             computerScore +=1;
+            computerScoreKeep.textContent = String(computerScore);
             break;
         default:
             break;
@@ -76,18 +80,17 @@ function getResultMessage(roundWinner) {
     }
 }
 
-function playRound() {
+function playRound(humanInput) {
     let computerInput = getComputerChoice();
-    let humanInput = getHumanChoice("Choose rock, paper or scissors.\nNote: Any other choice is your loss.");
+    // let humanInput = getHumanChoice("Choose rock, paper or scissors.\nNote: Any other choice is your loss.");
     let result = getRoundResult(humanInput, computerInput);
     updateScores(result);
-    console.log(getResultMessage(result)+` Computer chose ${computerInput} and you chose ${humanInput}.
+    messageDiv.textContent =  (getResultMessage(result)+` Computer chose ${computerInput} and you chose ${humanInput}.
     Current score: Player ${humanScore}, Computer ${computerScore}`);
 }
 
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
+const btns = document.querySelectorAll("button");
+btns.forEach(function(elem){
+    elem.addEventListener("click",function() {playRound(elem.className);});
+})
 
